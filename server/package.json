@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node src/index",
+    "server": "nodemon src/index"
+  },
+  "author": "Leo",
+  "license": "ISC"
+}
