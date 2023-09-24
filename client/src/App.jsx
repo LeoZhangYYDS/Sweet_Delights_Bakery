@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //pages
 import Home from "./pages/Home";
 import Cakes from "./pages/Cakes";
-import Breads from "./pages/Breads";
+import Sweets from "./pages/Sweets";
 import NotFound from "./pages/NotFound";
 
 //auth
@@ -18,7 +18,7 @@ function App() {
           {/* pages */}
           <Route path="/" element={<Home />} />
           <Route path="/cakes" element={<Cakes />} />
-          <Route path="/breads" element={<Breads />} />
+          <Route path="/Sweets" element={<Sweets />} />
           <Route path="*" element={<NotFound />} />
           {/* auth */}
           <Route path="/login" element={<Login />} />

@@ -6,8 +6,9 @@ globalStyle("*, *::before, *::after", {
 });
 
 // Remove default margin
-globalStyle("body, h1, h2, h3, h4, p, figure, blockquote, dl, dd", {
+globalStyle("body,div,h1, h2, h3, h4, p, figure, blockquote, dl, dd", {
   margin: 0,
+  padding: 0,
 });
 
 // Set core root defaults
