@@ -1,12 +1,15 @@
 import React from "react";
 import * as styles from "./Home.css";
+import Hero from "../components/Hero/Hero";
+import Banner1 from "../components/banner/Banner1";
+import Banner2 from "../components/banner/Banner2";
 
 const Home = () => {
   return (
-    <div className={styles.box}>
-      <h1 className={styles.text}>SWEET DELIGHTS</h1>
-      <h4 className={styles.text}>Since 1965</h4>
-      <div className={styles.image}></div>
+    <div className={styles.homePage}>
+      <Hero />
+      <Banner1 />
+      <Banner2 />
     </div>
   );
 };

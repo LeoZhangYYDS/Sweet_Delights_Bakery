@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 export const nav = style({
-  opacity: "0.9",
+  opacity: "0.8",
   ":hover": {
     opacity: "1",
   },

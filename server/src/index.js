@@ -5,13 +5,12 @@ const app = express();
 const morgan = require("morgan");
 //17 npm i dotenv
 require("dotenv").config();
+//20 require config
+const config = require("./config/config");
 //12 require ApiError
 const ApiError = require("./utils/ApiError");
 //15 require apiErrorHandler
 const apiErrorHandler = require("./middleware/apiErrorHandler");
-
-//20 require config
-const config = require("./config/config");
 
 //5 import routes
 const routes = require("./routes/routes");
