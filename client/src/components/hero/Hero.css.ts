@@ -1,7 +1,13 @@
 import { style } from "@vanilla-extract/css";
+export const background = style({
+  marginTop: "1rem",
+  width: "100vw",
+  background: "",
+  display: "flex",
+  justifyContent: "center",
+});
 
 export const grid = style({
-  marginTop: "1rem",
   width: "60vw",
   height: "60vh",
   display: "grid",

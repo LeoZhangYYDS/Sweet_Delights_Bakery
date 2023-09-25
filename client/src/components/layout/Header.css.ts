@@ -1,42 +1,41 @@
 import { style } from "@vanilla-extract/css";
+export const background = style({
+  background: "Ivory",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
+export const box = style({
+  width: "60vw",
+});
+export const logoBox = style({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
+export const logo1 = style({
+  width: "4.5rem",
+  height: "4rem",
+});
+
+export const logo2 = style({
+  marginLeft: "0.5rem",
+  width: "16rem",
+  height: "3rem",
+});
+export const box2 = style({
+  display: "flex ",
+  justifyContent: "end",
+});
 export const nav = style({
-  opacity: "0.8",
-  ":hover": {
-    opacity: "1",
-  },
+  width: "20vw",
+  display: "flex",
+  justifyContent: "space-between",
 });
 export const link = style({
-  color: "black",
-  marginRight: "30px",
-  textDecoration: "none",
+  fontSize: "1rem",
   ":hover": {
-    color: "FireBrick",
     textDecoration: "underline",
   },
 });
-
-export const logoBox = style({
-  display: "flex",
-  alignItems: "center",
-});
-export const logo = style({
-  width: "63px",
-  height: "55px",
-  marginRight: "8px",
-
-  "@media": {
-    "screen and (max-width:520px)": {
-      display: "none",
-    },
-  },
-});
-export const logo2 = style({
-  width: "250px",
-  height: "45px",
-  "@media": {
-    "screen and (max-width:520px)": {
-      width: "200px",
-      height: "35px",
-    },
-  },
-});
+export const icon = style({ color: "red" });

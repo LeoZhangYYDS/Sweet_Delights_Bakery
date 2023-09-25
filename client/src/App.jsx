@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //pages
 import Home from "./pages/Home";
 import Cakes from "./pages/Cakes";
-import Sweets from "./pages/Sweets";
+import Desserts from "./pages/Desserts";
 import Story from "./pages/Stroy";
 import Jobs from "./pages/Jobs";
 import NotFound from "./pages/NotFound";
@@ -20,7 +20,7 @@ function App() {
           {/* pages */}
           <Route path="/" element={<Home />} />
           <Route path="/cakes" element={<Cakes />} />
-          <Route path="/sweets" element={<Sweets />} />
+          <Route path="/desserts" element={<Desserts />} />
           <Route path="/story" element={<Story />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="*" element={<NotFound />} />

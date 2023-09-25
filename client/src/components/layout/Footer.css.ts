@@ -1,32 +1,28 @@
 import { style } from "@vanilla-extract/css";
 
-export const footer = style({
-  background: "rgb(0,0,0,0.3)",
+export const background = style({
+  marginTop: "2rem",
+  background: "Ivory",
   width: "100vw",
-  position: "fixed",
-  bottom: "0",
+  height: "3rem",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
 });
-export const box = style({
-  width: "75vw",
-  display: "grid",
+export const footer = style({
+  width: "60vw",
+  display: "flex",
+  justifyContent: "center",
   alignItems: "center",
-  gridTemplateColumns: "9fr 10fr 5fr 1fr 0.5fr 1fr",
 });
-
-export const item = style({
-  color: "white",
-  opacity: "0.7",
+export const text = style({
   textAlign: "center",
-
-  ":hover": {
-    opacity: "1",
-  },
-  "@media": {
-    "screen and (max-width:690px)": {
-      fontSize: "10px",
-    },
-  },
+  flexGrow: "1",
+});
+export const links = style({
+  display: "flex",
+  gap: "1rem",
+});
+export const icon = style({
+  color: "red",
 });

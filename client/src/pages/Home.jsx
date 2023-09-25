@@ -1,6 +1,6 @@
 import React from "react";
 import * as styles from "./Home.css";
-import Hero from "../components/Hero/Hero";
+import Hero from "../components/hero/Hero";
 import Banner1 from "../components/banner/Banner1";
 import Banner2 from "../components/banner/Banner2";
 
