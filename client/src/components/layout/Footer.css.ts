@@ -18,10 +18,15 @@ export const footer = style({
 export const text = style({
   textAlign: "center",
   flexGrow: "1",
+  "@media": {
+    "screen and (max-width:600px)": { fontSize: "0.7rem" },
+  },
 });
 export const links = style({
   display: "flex",
   gap: "1rem",
+  justifyContent: "center",
+  alignItems: "center",
 });
 export const icon = style({
   color: "red",

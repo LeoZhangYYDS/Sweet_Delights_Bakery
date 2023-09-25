@@ -11,12 +11,16 @@ export const background = style({
 export const heading = style({
   width: "60vw",
   textAlign: "start",
+  fontSize: "1.5rem",
+  "@media": {
+    "screen and (max-width:983px)": { fontSize: "1.1rem" },
+    "screen and (max-width:567px)": { fontSize: "0.8rem" },
+  },
 });
 export const box1 = style({
   width: "60vw",
   height: "40vh",
   display: "flex",
-  border: "1px solid red",
 });
 export const img = style({
   width: "50%",
@@ -35,10 +39,24 @@ export const box2 = style({
   alignItems: "center",
 });
 
-export const text = style({
+export const text1 = style({
   color: "white",
   width: "20vw",
   height: "auto",
   marginBottom: "1rem",
+  "@media": {
+    "screen and (max-width:983px)": { fontSize: "1.3rem" },
+    "screen and (max-width:567px)": { fontSize: "1rem" },
+  },
+});
+export const text2 = style({
+  color: "white",
+  width: "20vw",
+  height: "auto",
+  marginBottom: "1rem",
+  "@media": {
+    "screen and (max-width:983px)": { fontSize: "0.8rem" },
+    "screen and (max-width:567px)": { display: "none" },
+  },
 });
 export const box3 = style({ width: "68%" });

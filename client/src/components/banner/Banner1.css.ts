@@ -12,6 +12,11 @@ export const background = style({
 export const heading = style({
   width: "60vw",
   textAlign: "start",
+  fontSize: "1.5rem",
+  "@media": {
+    "screen and (max-width:983px)": { fontSize: "1.1rem" },
+    "screen and (max-width:567px)": { fontSize: "0.8rem" },
+  },
 });
 
 export const box1 = style({
@@ -40,10 +45,25 @@ export const box2 = style({
   justifyContent: "center",
   alignItems: "center",
 });
-export const text = style({
+export const text1 = style({
   color: "white",
   textAlign: "center",
   width: "20vw",
   height: "auto",
   marginBottom: "1rem",
+  "@media": {
+    "screen and (max-width:983px)": { fontSize: "1.3rem" },
+    "screen and (max-width:567px)": { fontSize: "1rem" },
+  },
+});
+export const text2 = style({
+  color: "white",
+  textAlign: "center",
+  width: "20vw",
+  height: "auto",
+  marginBottom: "1rem",
+  "@media": {
+    "screen and (max-width:983px)": { fontSize: "0.8rem" },
+    "screen and (max-width:567px)": { display: "none" },
+  },
 });

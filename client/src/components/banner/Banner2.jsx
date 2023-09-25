@@ -9,8 +9,8 @@ const Banner2 = () => {
       <h2 className={styles.heading}> Dessert </h2>
       <div className={styles.box1}>
         <div className={styles.box2}>
-          <h2 className={styles.text}>Party Packs</h2>
-          <p className={styles.text}>
+          <h2 className={styles.text1}>Party Packs</h2>
+          <p className={styles.text2}>
             Dedicated to all things sweet and delightful,the ultimate
             destination for dessert lovers
           </p>

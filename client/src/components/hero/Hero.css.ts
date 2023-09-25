@@ -14,27 +14,45 @@ export const grid = style({
   gridTemplateColumns: "repeat(7, 1fr)",
   gridAutoRows: "repeat(6, 1fr)",
   gap: "1rem",
+  "@media": {
+    "screen and (max-width:1400px)": {
+      gridTemplateColumns: "repeat(4, 1fr)",
+      gridAutoRows: "repeat(4, 1fr)",
+    },
+  },
 });
 
 export const item1 = style({
   gridArea: "1/1/7/4",
   position: "relative",
   overflow: "hidden",
+  "@media": {
+    "screen and (max-width:1400px)": { gridArea: "1/1/3/3" },
+  },
 });
 export const item2 = style({
   gridArea: "1/4/7/6",
   position: "relative",
   overflow: "hidden",
+  "@media": {
+    "screen and (max-width:1400px)": { gridArea: "1/3/3/5" },
+  },
 });
 export const item3 = style({
   gridArea: "1/6/4/8",
   position: "relative",
   overflow: "hidden",
+  "@media": {
+    "screen and (max-width:1400px)": { gridArea: "3/1/5/3" },
+  },
 });
 export const item4 = style({
   gridArea: "4/6/7/8",
   position: "relative",
   overflow: "hidden",
+  "@media": {
+    "screen and (max-width:1400px)": { gridArea: "3/3/5/5" },
+  },
 });
 export const text = style({
   position: "absolute",
@@ -45,6 +63,9 @@ export const text = style({
   zIndex: "1",
   ":hover": {
     textDecoration: "underline",
+  },
+  "@media": {
+    "screen and (max-width:1400px)": { fontSize: "1rem" },
   },
 });
 export const img = style({
