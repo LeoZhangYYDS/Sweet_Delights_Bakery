@@ -21,7 +21,7 @@ const authRoute = require("./routes/authRoutes");
 //22 Dev debug console logs      npm i debug
 const debugStartup = require("debug")("app:startup");
 
-//2 Express middleware
+//2 Express middleware ，middleware的顺序很重要，需要放在前面
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //9 npm i morgan 需要放在所有的route上面 这样才能监测 http status
