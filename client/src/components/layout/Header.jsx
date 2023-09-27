@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 import logo1 from "/img/logo.png";
 import logo2 from "/img/logo2.png";
 import { RiShoppingCartFill } from "react-icons/ri";
+import useAuth from "../../hooks/useAuth";
 
 function Header() {
+  const { user, logout } = useAuth();
   return (
     <div className={styles.background}>
       <Navbar expand="lg" className={styles.box}>
@@ -26,9 +28,32 @@ function Header() {
               Desserts
             </Link>
 
-            <Link to="/login" className={styles.link}>
-              Login
-            </Link>
+            {!user && (
+              <Link to="/login" className={styles.link}>
+                Login
+              </Link>
+            )}
+            {!user && (
+              <Link to="/signup" className={styles.link}>
+                Sign Up
+              </Link>
+            )}
+            {user && (
+              <Link className={styles.link} to="/dashboard">
+                Dashboard
+              </Link>
+            )}
+            {user && (
+              <Link
+                className={styles.link}
+                to="/"
+                onClick={() => {
+                  logout();
+                }}
+              >
+                Log Out
+              </Link>
+            )}
 
             <Link to="/cart" className={styles.link}>
               <RiShoppingCartFill className={styles.icon} />

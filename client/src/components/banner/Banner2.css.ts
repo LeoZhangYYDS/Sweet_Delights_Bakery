@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { vars } from "../../styles/themes.css";
 export const background = style({
   marginTop: "2rem",
   width: "100vw",
@@ -9,6 +10,8 @@ export const background = style({
   alignItems: "center",
 });
 export const heading = style({
+  color: vars.colors.title,
+  font: vars.fonts.body,
   width: "60vw",
   textAlign: "start",
   fontSize: "1.5rem",
@@ -29,8 +32,8 @@ export const img = style({
 });
 
 export const box2 = style({
-  background: "BurlyWood",
-  opacity: "0.93",
+  background: vars.colors.boxColor,
+  opacity: "0.8",
   width: "50%",
   height: "100%",
   display: "flex",
@@ -40,7 +43,8 @@ export const box2 = style({
 });
 
 export const text1 = style({
-  color: "white",
+  color: vars.colors.heading,
+  fontFamily: vars.fonts.brand,
   width: "20vw",
   height: "auto",
   marginBottom: "1rem",
@@ -50,7 +54,8 @@ export const text1 = style({
   },
 });
 export const text2 = style({
-  color: "white",
+  color: vars.colors.heading,
+  fontFamily: vars.fonts.body,
   width: "20vw",
   height: "auto",
   marginBottom: "1rem",

@@ -1,9 +1,14 @@
 import { style } from "@vanilla-extract/css";
+import { vars } from "../../styles/themes.css";
 export const background = style({
-  background: "Ivory",
+  background: vars.colors.nav,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  boxShadow: "0 8px 6px -6px gray",
+  width: "100vw",
+  position: "fixed",
+  zIndex: " 3",
 });
 export const box = style({
   width: "60vw",
@@ -50,9 +55,11 @@ export const nav = style({
   },
 });
 export const link = style({
+  fontFamily: vars.fonts.body,
   fontSize: "1rem",
   ":hover": {
     textDecoration: "underline",
+    color: vars.colors.icons,
   },
   "@media": {
     "screen and (max-width:991px)": {
@@ -61,4 +68,4 @@ export const link = style({
     },
   },
 });
-export const icon = style({ color: "red" });
+export const icon = style({ color: vars.colors.icons });

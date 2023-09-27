@@ -67,7 +67,6 @@ module.exports = {
         res.send({
           user: userJSON,
           //58 import jwtSignUser go to authServices
-          token: jwtSignUser(userJSON),
         });
       }
     } catch (err) {

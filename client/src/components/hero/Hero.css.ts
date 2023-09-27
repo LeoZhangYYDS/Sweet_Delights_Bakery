@@ -1,6 +1,7 @@
 import { style } from "@vanilla-extract/css";
+import { vars } from "../../styles/themes.css";
 export const background = style({
-  marginTop: "1rem",
+  marginTop: "6.5rem",
   width: "100vw",
   background: "",
   display: "flex",
@@ -58,11 +59,12 @@ export const text = style({
   position: "absolute",
   bottom: "0.5rem",
   right: "0.5rem",
-  color: "white",
+  color: vars.colors.heading,
+  fontFamily: vars.fonts.brand,
   fontSize: "1.3rem",
   zIndex: "1",
   ":hover": {
-    textDecoration: "underline",
+    transform: "scale(1.03)",
   },
   "@media": {
     "screen and (max-width:1400px)": { fontSize: "1rem" },

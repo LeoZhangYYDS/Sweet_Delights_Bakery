@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { vars } from "../../styles/themes.css";
 export const background = style({
   marginTop: "2rem",
   width: "100vw",
@@ -10,6 +11,8 @@ export const background = style({
 });
 
 export const heading = style({
+  color: vars.colors.title,
+  font: vars.fonts.body,
   width: "60vw",
   textAlign: "start",
   fontSize: "1.5rem",
@@ -38,15 +41,16 @@ export const box2 = style({
   position: "absolute",
   top: "5vh",
   right: "5vw",
-  background: "BurlyWood",
-  opacity: "0.93",
+  background: vars.colors.boxColor,
+  opacity: "0.8",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
 });
 export const text1 = style({
-  color: "white",
+  color: vars.colors.heading,
+  fontFamily: vars.fonts.brand,
   textAlign: "center",
   width: "20vw",
   height: "auto",
@@ -57,7 +61,8 @@ export const text1 = style({
   },
 });
 export const text2 = style({
-  color: "white",
+  color: vars.colors.heading,
+  fontFamily: vars.fonts.body,
   textAlign: "center",
   width: "20vw",
   height: "auto",

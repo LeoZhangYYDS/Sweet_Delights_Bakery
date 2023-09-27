@@ -7,7 +7,7 @@ export const styledLabel = style({
 export const styledInput = style({
   margin: "2rem 0",
   textAlign: "center",
-  fontWeight: "bold",
+  fontWeight: "bolder",
   fontSize: "0.9em",
   letterSpacing: "0.1em",
   outline: "none",
@@ -18,6 +18,7 @@ export const styledInput = style({
   transition: "all 0.2s",
 
   ":focus": {
+    border: 0,
     boxShadow: "none",
     transform: "scale(1.01)",
   },
