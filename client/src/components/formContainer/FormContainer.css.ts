@@ -11,14 +11,13 @@ export const authForm = style({
 
 export const container = style({
   marginTop: "8rem",
-  minHeight: "76vh",
+  minHeight: "81vh",
   display: "flex",
   flexDirection: "column",
 });
 
 export const leadCard = style({
-  background: vars.colors.form,
-  color: vars.colors.title,
+  background: vars.colors.white,
   margin: "auto",
   padding: "2rem",
   borderRadius: "1rem",
@@ -27,7 +26,8 @@ export const leadCard = style({
 });
 
 export const cardTitle = style({
-  color: vars.colors.formHeading,
+  color: vars.colors.theme,
+  fontFamily: vars.fonts.brand,
   paddingBottom: "1rem",
   fontSize: "2em",
   fontWeight: "bold",

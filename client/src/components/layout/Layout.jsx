@@ -4,6 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { ToastContainer, Slide } from "react-toastify";
 import * as styles from "./Layout.css";
+import img from "/img/bg5.webp";
 
 const Layout = () => {
   return (
@@ -22,6 +23,7 @@ const Layout = () => {
         transition={Slide}
         theme="colored"
       />
+      <img className={styles.img} src={img} alt="bg" />
       <Header />
       <div className={styles.appContent}>
         <Outlet />

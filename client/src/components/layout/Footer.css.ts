@@ -1,14 +1,13 @@
 import { style } from "@vanilla-extract/css";
 import { vars } from "../../styles/themes.css";
 export const background = style({
-  marginTop: "2rem",
   background: vars.colors.nav,
-  width: "100vw",
-  height: "3rem",
+  width: "100%",
+  height: "5rem",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  boxShadow: "0 -1px 6px -6px gray",
+  boxShadow: "0 -4px 6px -6px gray",
 });
 export const footer = style({
   width: "60vw",
@@ -18,6 +17,8 @@ export const footer = style({
 });
 export const text = style({
   fontFamily: vars.fonts.body,
+  color: vars.colors.icons,
+  fontSize: "0.8rem",
   textAlign: "center",
   flexGrow: "1",
   "@media": {

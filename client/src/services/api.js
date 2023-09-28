@@ -24,7 +24,7 @@ api.interceptors.response.use(null, (error) => {
   } else {
     // STANDARDISED: By creating uniform error responses, like our backend, we can standardise our errors on the front end
     console.log(`${error?.response.data}`);
-    toast(`${error.response.data}`);
+    toast.error(`${error.response.data}`);
   }
 
   // Function Return: As we a intercepting an ERROR we want to make sure we return a rejected promise

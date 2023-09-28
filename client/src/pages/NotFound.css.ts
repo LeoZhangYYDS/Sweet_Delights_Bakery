@@ -1,16 +1,16 @@
 import { style } from "@vanilla-extract/css";
+import { vars } from "../styles/themes.css";
 export const error = style({
+  fontFamily: vars.fonts.brand,
   width: "100vw",
-  height: "70vh",
-  backgroundImage: "url(/img/404.webp)",
-  backgroundPosition: "center",
-  backgroundSize: "cover",
-  textAlign: "center",
+  height: "91.3vh",
   display: "flex",
+  flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
+  fontSize: "4rem",
 });
-export const button = style({
-  textDecoration: "None",
-  marginTop: "20rem",
+
+export const text = style({
+  marginBottom: "2rem",
 });

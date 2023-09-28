@@ -1,6 +1,7 @@
 import useAuth from "../../hooks/useAuth";
 import FormContainer from "../../components/formContainer/FormContainer";
-import { Button } from "react-bootstrap";
+import CusButton from "../../components/button/CusButton";
+import * as styles from "./Dashboard.css";
 
 const Dashboard = () => {
   // HOOK: CONTEXT FOR AUTH
@@ -16,7 +17,7 @@ const Dashboard = () => {
   }
 
   return (
-    <FormContainer title="Profile" authform>
+    <FormContainer title="Profile" authform className={styles.text}>
       <div className="text-center mb-4">
         <h4>Welcome {user.username}!</h4>
       </div>
@@ -33,13 +34,13 @@ const Dashboard = () => {
       {/* Log Out & Forces a Redirect */}
       {user && (
         <div className="mt-5">
-          <Button
+          <CusButton
             onClick={() => {
               logout();
             }}
           >
             Log Out
-          </Button>
+          </CusButton>
         </div>
       )}
     </FormContainer>

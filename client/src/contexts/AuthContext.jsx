@@ -43,7 +43,7 @@ export function AuthProvider({ children }) {
     setUser(null);
     setHeaderToken();
     navigate("/");
-    toast.success("You are Logged Out");
+    toast.info("You are Logged Out");
   };
 
   // Define the value attribute with props above

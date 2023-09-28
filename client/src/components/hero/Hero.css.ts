@@ -1,8 +1,8 @@
 import { style } from "@vanilla-extract/css";
 import { vars } from "../../styles/themes.css";
 export const background = style({
-  marginTop: "6.5rem",
-  width: "100vw",
+  marginTop: "7.5rem",
+  width: "100%",
   background: "",
   display: "flex",
   justifyContent: "center",
@@ -59,10 +59,13 @@ export const text = style({
   position: "absolute",
   bottom: "0.5rem",
   right: "0.5rem",
-  color: vars.colors.heading,
+  color: vars.colors.white,
   fontFamily: vars.fonts.brand,
-  fontSize: "1.3rem",
+  fontSize: "2.2rem",
+  fontWeight: "bold",
+  letterSpacing: "2px",
   zIndex: "1",
+  textShadow: "1.5px 1.5px 1.5px #E97777",
   ":hover": {
     transform: "scale(1.03)",
   },

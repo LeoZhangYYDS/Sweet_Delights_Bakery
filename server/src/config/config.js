@@ -13,4 +13,10 @@ module.exports = {
     //Application secret for creating a secure web token
     jwtSecret: process.env.JWT_SECRET,
   },
+
+  // [D] Approved CORS root URLs
+  corsAllowedOptions: [
+    process.env.CORS_WHITELIST_1,
+    process.env.CORS_WHITELIST_2,
+  ],
 };

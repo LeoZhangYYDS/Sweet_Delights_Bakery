@@ -5,8 +5,12 @@ const express = require("express");
 const app = express();
 //10  require morgan
 const morgan = require("morgan");
+const cors = require("cors");
+const helmet = require("helmet");
 //20 require config
 const config = require("./config/config");
+
+const corsOptions = require("./config/corsOptions");
 //40 require dbPing
 const { dbPing } = require("./config/db");
 //12 require ApiError
@@ -20,6 +24,13 @@ const authRoute = require("./routes/authRoutes");
 
 //22 Dev debug console logs      npm i debug
 const debugStartup = require("debug")("app:startup");
+
+// EXPRESS MIDDLEWARE:
+// HTTP Header-setter security & CORS
+app.use(helmet()); //before cors 保护api用的
+// app.use(cors({ origin: "*" }));     default: 所有的等可以访问我们的api
+app.use(cors(corsOptions)); //这样设置 只有 开发的时候和 部署的网站可以访问api
+debugStartup("Helmet & CORS Pre-Flight requests enabled");
 
 //2 Express middleware ，middleware的顺序很重要，需要放在前面
 app.use(express.json());

@@ -5,8 +5,8 @@ export const background = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  boxShadow: "0 8px 6px -6px gray",
-  width: "100vw",
+  boxShadow: "0 4px 6px -6px gray",
+  width: "100%",
   position: "fixed",
   zIndex: " 3",
 });
@@ -48,24 +48,11 @@ export const nav = style({
   display: "flex",
   justifyContent: "space-between",
   "@media": {
-    "screen and (max-width:991px)": {
+    "screen and (max-width:1400px)": {
       width: "100%",
       marginTop: "2rem",
     },
   },
 });
-export const link = style({
-  fontFamily: vars.fonts.body,
-  fontSize: "1rem",
-  ":hover": {
-    textDecoration: "underline",
-    color: vars.colors.icons,
-  },
-  "@media": {
-    "screen and (max-width:991px)": {
-      margin: "1rem 0",
-      textAlign: "center",
-    },
-  },
-});
+
 export const icon = style({ color: vars.colors.icons });

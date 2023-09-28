@@ -1,12 +1,13 @@
 import React from "react";
 import * as styles from "./Banner2.css";
-import image1 from "/img/b2.jpg";
+import image1 from "/img/b2.webp";
 import Container from "react-bootstrap/Container";
+import CusButton from "../button/CusButton";
 
 const Banner2 = () => {
   return (
     <Container className={styles.background}>
-      <h2 className={styles.heading}> Dessert </h2>
+      {/* <h2 className={styles.heading}> Dessert </h2> */}
       <div className={styles.box1}>
         <div className={styles.box2}>
           <h2 className={styles.text1}>Party Packs</h2>
@@ -15,7 +16,7 @@ const Banner2 = () => {
             destination for dessert lovers
           </p>
           <div className={styles.box3}>
-            <button>Shop Now</button>
+            <CusButton to="/desserts">Shop Now</CusButton>
           </div>
         </div>
         <img className={styles.img} src={image1} alt="sweets" />

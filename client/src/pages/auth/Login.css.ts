@@ -13,7 +13,7 @@ export const styledInput = style({
   outline: "none",
   border: "2px solid rgba(0, 0, 0, 0.02)",
   borderRadius: "1rem",
-  color: vars.colors.formText,
+  color: "",
   background: "rgba(136, 126, 126, 0.04)",
   transition: "all 0.2s",
 
@@ -24,6 +24,7 @@ export const styledInput = style({
 });
 
 export const userNav = style({
+  fontFamily: vars.fonts.body,
   marginTop: "1rem",
   paddingTop: "1rem",
   fontSize: "0.9em",
@@ -32,6 +33,6 @@ export const userNav = style({
 
 export const link = style({
   textDecoration: "none",
-  color: vars.colors.formHeading,
+  color: vars.colors.theme,
   ":hover": { textDecoration: "underline" },
 });

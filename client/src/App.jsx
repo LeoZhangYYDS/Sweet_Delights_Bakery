@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import Dashboard from "./pages/auth/Dashboard";
+import PrivateRoutes from "./components/layout/PrivateRoute";
 
 //components
 import Layout from "./components/layout/Layout";
@@ -20,15 +21,19 @@ function App() {
       <Route path="/" element={<Layout />}>
         {/* pages */}
         <Route path="/" element={<Home />} />
+
         <Route path="/cakes" element={<Cakes />} />
         <Route path="/desserts" element={<Desserts />} />
         <Route path="/story" element={<Story />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="*" element={<NotFound />} />
+
         {/* auth */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
       </Route>
     </Routes>
   );

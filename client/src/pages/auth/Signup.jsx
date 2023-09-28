@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Form, Spinner, Button } from "react-bootstrap";
+import { Form, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 // LOCAL MODULES
@@ -8,6 +8,7 @@ import * as styles from "./Signup.css";
 import authService from "../../services/authService";
 import useAuth from "../../hooks/useAuth";
 import FormContainer from "../../components/formContainer/FormContainer";
+import CusButton from "../../components/button/CusButton";
 
 function Signup() {
   // ACCESS VARIABLES FROM HOOKS
@@ -49,7 +50,7 @@ function Signup() {
       const response = await authService.register(user);
       loginSaveUser(response.data);
       navigate("/login");
-      toast.success("Sign Up Success. Please Login. ");
+      toast.info("Sign Up Success. Please Login. ");
     } catch (err) {
       console.log(err?.response);
       setTimeout(() => {
@@ -115,7 +116,7 @@ function Signup() {
         </Form.Group>
 
         {/* SUBMIT BUTTON */}
-        <Button type="submit">
+        <CusButton>
           {loading ? (
             <Spinner
               as="span"
@@ -127,12 +128,12 @@ function Signup() {
           ) : (
             "Submit"
           )}
-        </Button>
+        </CusButton>
       </Form>
       <div className={styles.userNav}>
         <span>
           Already a member? &nbsp;
-          <Link className={styles.link} to="/login">
+          <Link to="/login" className={styles.link}>
             Login Here
           </Link>
         </span>
