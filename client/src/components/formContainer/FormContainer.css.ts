@@ -11,7 +11,7 @@ export const authForm = style({
 
 export const container = style({
   marginTop: "8rem",
-  minHeight: "81vh",
+  minHeight: "77.71vh",
   display: "flex",
   flexDirection: "column",
 });

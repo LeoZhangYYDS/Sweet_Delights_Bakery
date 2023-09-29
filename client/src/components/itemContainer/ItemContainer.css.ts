@@ -10,7 +10,6 @@ export const background = style({
   alignItems: "center",
 });
 export const box = style({
-  border: "1px solid black",
   width: "60vw",
   height: "40vh",
   display: "flex",
