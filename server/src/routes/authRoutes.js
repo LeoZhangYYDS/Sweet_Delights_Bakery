@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 //45
 const authController = require("../controllers/authController");
-
+//test
 const authPolicy = require("../policies/authPolicy");
 router.get("/", (req, res, next) => {
   res.send("this is auth route");

@@ -19,8 +19,8 @@ const ApiError = require("./utils/ApiError");
 const apiErrorHandler = require("./middleware/apiErrorHandler");
 
 //5 import routes
-const testRoute = require("./routes/testRoutes");
 const authRoute = require("./routes/authRoutes");
+const productRoute = require("./routes/productRoutes");
 
 //22 Dev debug console logs      npm i debug
 const debugStartup = require("debug")("app:startup");
@@ -41,8 +41,8 @@ app.use(morgan("dev"));
 debugStartup("Parsing middleware enable on all routes");
 
 //4 routes
-app.use("/api", testRoute);
 app.use("/api/auth", authRoute); //44
+app.use("/api/product", productRoute);
 
 //11 set up error path 1 : not found route 所有routes没有设置的路径会来到这里
 app.use((req, res, next) => {
