@@ -3,9 +3,7 @@ import ItemList from "../itemList/itemList";
 const ItemContainer = () => {
   return (
     <div className={styles.background}>
-      <div className={styles.box}>
-        <ItemList />
-      </div>
+      <div className={styles.box}>{/* <ItemList /> */}</div>
     </div>
   );
 };

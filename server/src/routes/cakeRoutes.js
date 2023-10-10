@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const productController = require("../controllers/productController");
+const cakeController = require("../controllers/cakeController");
 //test
 router.get("/", (req, res) => {
   res.send("this is product route");
 });
-//get all products,   get:  /api/product/all
-router.get("/all", productController.getAllProduct);
+//get all products,   get:  /api/cakes/all
+router.get("/all", cakeController.getAllProduct);
 
 //add/post product
 

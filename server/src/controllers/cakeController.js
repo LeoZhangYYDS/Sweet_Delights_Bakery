@@ -5,8 +5,11 @@ module.exports = {
   //get all product
   async getAllProduct(req, res, next) {
     try {
-      const productRef = db.collection("products");
-      const snapshot = await productRef.get();
+      const productRef = db.collection("cakes");
+      const snapshot = await productRef
+        // .where("category", "==", "cheese cake")
+        .orderBy("name", "asc")
+        .get();
       //400 error check if this collection exist
       if (snapshot.empty) {
         return next(

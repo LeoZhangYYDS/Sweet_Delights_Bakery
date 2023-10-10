@@ -15,4 +15,8 @@ export const img = style({
   height: "100vh",
   position: "fixed",
 });
-export const appContent = style({});
+export const appContent = style({
+  minHeight: "91.3vh",
+  display: "flex",
+  justifyContent: "center",
+});

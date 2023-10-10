@@ -1,14 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import * as styles from "./ItemCard.css";
 
 const itemCard = (props) => {
-  const { name, price, img } = props;
+  const { name, price, image } = props;
   return (
-    <div className={styles.card}>
-      <img className={styles.img} src={img} alt="img" />
-      <div className={styles.name}>{name}</div>
-      <div className={styles.price}>${price}</div>
-    </div>
+    <Link className={styles.card} to="#">
+      <img className={styles.img} src={image} alt={name} />
+      <div className={styles.content}>
+        <div className={styles.name}>{name}</div>
+        <div className={styles.price}>{price}</div>
+      </div>
+    </Link>
   );
 };
 

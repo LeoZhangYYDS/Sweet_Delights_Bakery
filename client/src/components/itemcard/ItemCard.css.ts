@@ -3,23 +3,32 @@ import { vars } from "../../styles/themes.css";
 
 export const card = style({
   height: "40vh",
-  border: "2px solid #E97777",
-  ":hover": { border: "2px solid #900C3F" },
+  background: vars.colors.nav,
+  ":hover": { transform: "scale(1.03)", transition: " 0.4s" },
 });
 export const img = style({
-  height: "85%",
+  height: "32vh",
   width: "100%",
   objectFit: "cover",
 });
-export const name = style({
-  height: "10%",
+
+export const content = style({
+  fontFamily: vars.fonts.body,
+  color: vars.colors.icons,
   display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
   alignItems: "center",
-  justifyContent: "start",
+});
+export const name = style({
+  height: "4vh",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 });
 export const price = style({
-  height: "5%",
+  height: "4vh",
   display: "flex",
+  justifyContent: "center",
   alignItems: "center",
-  justifyContent: "start",
 });

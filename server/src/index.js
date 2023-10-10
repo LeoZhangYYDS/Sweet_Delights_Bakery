@@ -20,7 +20,7 @@ const apiErrorHandler = require("./middleware/apiErrorHandler");
 
 //5 import routes
 const authRoute = require("./routes/authRoutes");
-const productRoute = require("./routes/productRoutes");
+const cakeRoute = require("./routes/cakeRoutes");
 
 //22 Dev debug console logs      npm i debug
 const debugStartup = require("debug")("app:startup");
@@ -42,7 +42,7 @@ debugStartup("Parsing middleware enable on all routes");
 
 //4 routes
 app.use("/api/auth", authRoute); //44
-app.use("/api/product", productRoute);
+app.use("/api/cakes", cakeRoute);
 
 //11 set up error path 1 : not found route 所有routes没有设置的路径会来到这里
 app.use((req, res, next) => {

@@ -1,25 +1,23 @@
 import React from "react";
 import * as styles from "./ItemList.css";
 import ItemCard from "../itemcard/itemCard";
-import img from "/img/1.webp";
+import { priceFormatter, capitalizeFirstLetter } from "../../utils/readUtils";
 
-const itemList = () => {
-  const datas = [
-    { name: "item1", price: "30", img: img },
-    { name: "item2", price: "30", img: img },
-    { name: "item3", price: "30", img: img },
-    { name: "item4", price: "30", img: img },
-  ];
+const itemList = (props) => {
+  const { products } = props;
   return (
     <div className={styles.grid}>
-      {datas.map((data) => (
-        <ItemCard
-          key={data.name}
-          name={data.name}
-          price={data.price}
-          img={data.img}
-        />
-      ))}
+      {products.length > 0 &&
+        products.map((product) => (
+          <ItemCard
+            key={product.id}
+            id={product.id}
+            name={capitalizeFirstLetter(product.name)}
+            price={priceFormatter(product.price)}
+            image={product.image}
+            description={product.description}
+          />
+        ))}
     </div>
   );
 };

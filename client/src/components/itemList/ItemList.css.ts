@@ -3,9 +3,7 @@ import { vars } from "../../styles/themes.css";
 
 export const grid = style({
   display: "grid",
-  gridTemplateColumns: "repeat(4,1fr)",
+  gridTemplateColumns: "repeat(auto-fit, minmax(15rem, 1fr))",
   gap: "1rem",
-
   width: "100%",
-  height: "100%",
 });
