@@ -6,6 +6,7 @@ const app = express();
 //10  require morgan
 const morgan = require("morgan");
 const cors = require("cors");
+const fileUpload = require("express-fileupload");
 const helmet = require("helmet");
 //20 require config
 const config = require("./config/config");
@@ -37,6 +38,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //9 npm i morgan 需要放在所有的route上面 这样才能监测 http status
 app.use(morgan("dev"));
+
+//File upload middleware   npm i express-fileupload
+app.use(fileUpload({ createParentPath: true })); //和middleware里的 fileServerUpload 配合使用
+
 //23 to run this use npm run devWin(自己在package.json定义的script名字)
 debugStartup("Parsing middleware enable on all routes");
 

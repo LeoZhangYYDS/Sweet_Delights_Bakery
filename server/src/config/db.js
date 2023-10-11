@@ -8,8 +8,6 @@ var admin = require("firebase-admin");
 const config = require("./config");
 
 try {
-  dbStartup("Attempting database connection...");
-
   //35改成下面的 var serviceAccount = require("c:/Users/user/Desktop/firesbase/sweet-delights-4d3ff-firebase-adminsdk-vpa9a-13868fe925.json");
   var serviceAccount = require(config.db.serviceAccountKey);
   admin.initializeApp({
