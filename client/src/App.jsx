@@ -6,6 +6,7 @@ import Desserts from "./pages/Desserts";
 import Story from "./pages/Stroy";
 import Jobs from "./pages/Jobs";
 import NotFound from "./pages/NotFound";
+import AddProduct from "./pages/AddProduct";
 
 //auth
 import Login from "./pages/auth/Login";
@@ -27,6 +28,9 @@ function App() {
         <Route path="/story" element={<Story />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="*" element={<NotFound />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/add" element={<AddProduct />} />
+        </Route>
 
         {/* auth */}
         <Route path="/login" element={<Login />} />

@@ -28,14 +28,16 @@ function Header() {
             {!user && <CusLink to="/signup">Sign Up</CusLink>}
             {user && <CusLink to="/dashboard">Dashboard</CusLink>}
             {user && (
-              <CusLink
+              <button
+                as={Link}
                 to="/"
+                className={styles.button}
                 onClick={() => {
                   logout();
                 }}
               >
-                Log Out
-              </CusLink>
+                <CusLink>Log Out</CusLink>
+              </button>
             )}
 
             <CusLink to="/cart">

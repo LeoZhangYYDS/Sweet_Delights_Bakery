@@ -54,5 +54,13 @@ export const nav = style({
     },
   },
 });
+export const button = style({
+  border: 0,
+  background: vars.colors.nav,
+  padding: 0,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
 
 export const icon = style({ color: vars.colors.icons });

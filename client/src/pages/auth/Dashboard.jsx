@@ -2,7 +2,7 @@ import useAuth from "../../hooks/useAuth";
 import FormContainer from "../../components/formContainer/FormContainer";
 import CusButton from "../../components/button/CusButton";
 import * as styles from "./Dashboard.css";
-
+import { Link } from "react-router-dom";
 const Dashboard = () => {
   // HOOK: CONTEXT FOR AUTH
   const { user, logout } = useAuth();
@@ -15,7 +15,7 @@ const Dashboard = () => {
       </FormContainer>
     );
   }
-
+  console.log(user);
   return (
     <FormContainer title="Profile" authform className={styles.text}>
       <div className="text-center mb-4">
@@ -25,15 +25,15 @@ const Dashboard = () => {
         <strong>Email: </strong>
         {user.email}
       </p>
-      {user.isAdmin && (
-        <p>
-          <strong>Secret: </strong> Hello Admin - nice to see you here
-        </p>
-      )}
 
       {/* Log Out & Forces a Redirect */}
       {user && (
-        <div className="mt-5">
+        <div className={styles.buttonBox}>
+          {user.isAdmin && (
+            <CusButton as={Link} to="/add">
+              <Link to="/add"> Add Item </Link>
+            </CusButton>
+          )}
           <CusButton
             onClick={() => {
               logout();
