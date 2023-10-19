@@ -13,6 +13,7 @@ export const root = createGlobalTheme(":root", {
     white: "#F8F6F4",
     boxColor: "#ECA869",
     boxColor2: "#D3756B",
+    text: "#1d2d44",
   },
 });
 

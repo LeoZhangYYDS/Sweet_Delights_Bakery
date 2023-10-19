@@ -8,10 +8,11 @@ const filePolicy = require("../policies/filePolicy");
 router.get("/", (req, res) => {
   res.send("this is product route");
 });
-//get all products,   get:  /api/cakes/all
+
+//1 get all products,   get:  /api/cakes/all
 router.get("/all", cakeController.getAllProduct);
 
-//add/post product
+//2 add/post product    post: /api/cakes/post
 router.post(
   "/post",
   [
@@ -24,10 +25,21 @@ router.post(
   cakeController.postProduct
 );
 
-//get by id
+//3 get by id    get: /api/cakes/:id
+router.get("/:id", cakeController.getProductById);
 
-//update by id
-
+//4 update by id  post: /api/cakes/:id
+router.put(
+  "/:id",
+  [
+    productPolicy.validateProduct,
+    filePolicy.filesPayloadExists,
+    filePolicy.fileSizeLimiter,
+    filePolicy.fileExtLimiter([".png", ".jpg", ".jpeg", ".gif"]),
+    fileServerUpload,
+  ],
+  cakeController.updateProductById
+);
 //delete by id
 
 module.exports = router;

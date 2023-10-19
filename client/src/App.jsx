@@ -7,6 +7,8 @@ import Story from "./pages/Stroy";
 import Jobs from "./pages/Jobs";
 import NotFound from "./pages/NotFound";
 import AddProduct from "./pages/AddProduct";
+import CakeDetail from "./pages/CakeDetail";
+import CakeEdit from "./pages/CakeEdit";
 
 //auth
 import Login from "./pages/auth/Login";
@@ -24,12 +26,14 @@ function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="/cakes" element={<Cakes />} />
+        <Route path="/cakes/:id" element={<CakeDetail />} />
         <Route path="/desserts" element={<Desserts />} />
         <Route path="/story" element={<Story />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="*" element={<NotFound />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/add" element={<AddProduct />} />
+          <Route path="/cakes/edit/:id" element={<CakeEdit />} />
         </Route>
 
         {/* auth */}

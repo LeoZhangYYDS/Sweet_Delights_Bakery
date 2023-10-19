@@ -29,9 +29,9 @@ const Dashboard = () => {
       {/* Log Out & Forces a Redirect */}
       {user && (
         <div className={styles.buttonBox}>
-          {user.isAdmin && (
+          {user.isAdmin === true && (
             <CusButton as={Link} to="/add">
-              <Link to="/add"> Add Item </Link>
+              Add Item
             </CusButton>
           )}
           <CusButton

@@ -1,9 +1,14 @@
 const { db } = require("../config/db");
 const ApiError = require("../utils/ApiError");
-const { storageBucketUpload } = require("../utils/bucketServices");
+const {
+  storageBucketUpload,
+  deleteFileFromBucket,
+} = require("../utils/bucketServices");
+const debugREAD = require("debug")("app:read");
+const debugWRITE = require("debug")("app:write");
 
 module.exports = {
-  //get all product
+  // 1 get all product
   async getAllProduct(req, res, next) {
     try {
       const productRef = db.collection("cakes");
@@ -34,7 +39,7 @@ module.exports = {
       return next(ApiError.internal("The Products have gone missing", err));
     }
   },
-  //post product
+  // 2 post product
   async postProduct(req, res, next) {
     // (b) File Upload to Storage Bucket
     let downloadURL = null;
@@ -67,6 +72,101 @@ module.exports = {
     } catch (err) {
       return next(
         ApiError.internal("Your requset could not be saved at this time", err)
+      );
+    }
+  },
+  // 3 get by id
+  async getProductById(req, res, next) {
+    // Test: Check ID passed via URL query string parameters
+    debugREAD(req.params);
+
+    try {
+      // Store the document query in variable & call GET method for ID
+      const productRef = db.collection("cakes").doc(req.params.id);
+      const doc = await productRef.get();
+
+      // [400 ERROR] Check for User Asking for Non-Existent Documents
+      if (!doc.exists) {
+        return next(
+          ApiError.badRequest("The item you were looking for does not exist")
+        );
+
+        // SUCCESS: Send back the specific document's data
+      } else {
+        res.send(doc.data());
+      }
+
+      // [500 ERROR] Checks for Errors in our Query - issue with route or DB query
+    } catch (err) {
+      return next(
+        ApiError.internal(
+          "Your request could not be processed at this time",
+          err
+        )
+      );
+    }
+  },
+  // 4 put/update by id
+  async updateProductById(req, res, next) {
+    // (a) Validation (JOI) Direct from Form (refactored)
+    debugWRITE(req.params);
+    debugWRITE(req.body);
+    debugWRITE(req.files);
+    debugWRITE(res.locals);
+
+    // (b1) File Upload to Storage Bucket
+    // IMAGE CHANGED: If the image is updated, a new file will be saved under req.files
+    // NOTE: We will call standard file uploader + we will ALSO need to delete the OLD image URL from the storage location (if there is one)
+    let downloadURL = null;
+    try {
+      if (req.files) {
+        // (i) Storage-Upload
+        const filename = res.locals.filename;
+        downloadURL = await storageBucketUpload(filename);
+
+        // (ii) Delete OLD image version in Storage Bucket, if it exists
+        if (req.body.uploadedFile) {
+          debugWRITE(`Deleting old image in storage: ${req.body.uploadedFile}`);
+          const bucketResponse = await deleteFileFromBucket(
+            req.body.uploadedFile
+          );
+        }
+
+        // (b2) IMAGE NOT CHANGED: We just pass back the current downloadURL and pass that back to the database, unchanged!
+      } else {
+        console.log(`No change to image in DB`);
+        downloadURL = req.body.image;
+      }
+
+      // [500 ERROR] Checks for Errors in our File Upload
+    } catch (err) {
+      return next(
+        ApiError.internal(
+          "An error occurred in saving the image to storage",
+          err
+        )
+      );
+    }
+
+    // (c) Store the document query in variable & call UPDATE method for ID
+    try {
+      const productRef = db.collection("cakes").doc(req.params.id);
+      const response = await productRef.update({
+        name: req.body.name,
+        description: req.body.description,
+        category: req.body.category,
+        price: Number(req.body.price),
+        image: downloadURL,
+      });
+      res.send(response);
+
+      // [500 ERROR] Checks for Errors in our Query - issue with route or DB query
+    } catch (err) {
+      return next(
+        ApiError.internal(
+          "Your request could not be processed at this time",
+          err
+        )
       );
     }
   },

@@ -15,14 +15,14 @@ const Cakes = () => {
   // HOOK: ON-LOAD SIDE EFFECTS
   const effectRan = useRef(false);
   useEffect(() => {
-    console.log("Effect Ran");
+    // console.log("Effect Ran");
     if (effectRan.current === false) {
       fetchProducts();
       setLoading(false);
 
       // CLEAN UP FUNCTION
       return () => {
-        console.log("Unmounted");
+        // console.log("Unmounted");
         effectRan.current = true;
       };
     }

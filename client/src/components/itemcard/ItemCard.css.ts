@@ -2,7 +2,7 @@ import { style } from "@vanilla-extract/css";
 import { vars } from "../../styles/themes.css";
 
 export const card = style({
-  height: "40vh",
+  height: "42vh",
   background: vars.colors.nav,
   ":hover": { transform: "scale(1.03)", transition: " 0.4s" },
 });
@@ -21,13 +21,14 @@ export const content = style({
   alignItems: "center",
 });
 export const name = style({
-  height: "4vh",
+  height: "5vh",
+  textAlign: "center",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
 });
 export const price = style({
-  height: "4vh",
+  height: "5vh",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",

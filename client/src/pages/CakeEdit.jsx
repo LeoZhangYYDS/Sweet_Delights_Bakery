@@ -1,51 +1,102 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Form, InputGroup, Spinner } from "react-bootstrap";
+import * as styles from "./CakeEdit.css";
+import { useState, useEffect, useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Form, InputGroup, Spinner, Container } from "react-bootstrap";
 
 import cakeService from "../services/cakeService";
 import FormContainer from "../components/formContainer/FormContainer";
 import CusButton from "../components/button/CusButton";
-import * as styles from "./AddProduct.css";
+import Loader from "../components/loader/Loader";
+import { getFileFromUrl } from "../utils/writeUtils";
 
-function AddProduct() {
-  // HOOK: SETTING COMPONENT STATE (& init values)
+const CakeEdit = () => {
+  // CUSTOM HOOKS
+  const params = useParams();
   const navigate = useNavigate();
+
+  // STATE INIT
   const [productData, setProductData] = useState({
+    id: params.id,
     name: "",
     description: "",
     category: "",
-    image: "",
     price: 0,
+    image: "",
   });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  // Uploaded File from Existing downloadURL
+  const [uploadedFile, setUploadedFile] = useState("");
+  const [preview, setPreview] = useState(true);
 
   // Destructure data state nested object properties & instance of useNavigate class
-  const { name, description, category, price } = productData;
+  const { id, name, description, category, price, image } = productData;
+
+  // HOOK: ON-LOAD SIDE EFFECTS
+  const effectRan = useRef(false);
+  useEffect(() => {
+    if (effectRan.current === false) {
+      fetchProduct();
+      setLoading(false);
+
+      // CLEAN UP FUNCTION
+      return () => {
+        effectRan.current = true;
+      };
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   // FORM FUNCTIONS
-  // [1] handleTextChange will handle change in state value event for TEXT data
-  // NOTE: To update state object, we create shallow copy & mutate properties according to input field changed
+  // [0] FORM PRE-POPULATION CALL
+  async function fetchProduct() {
+    try {
+      // (i) API FETCH CALL
+      const response = await cakeService.getById(id);
+      const dbProduct = await response.data;
+      console.log(dbProduct);
+
+      // (ii) UPDATING STATE DATA OBJECT
+      setProductData((productData) => ({ ...productData, ...dbProduct }));
+
+      // Save uploaded file glob to state
+      if (!dbProduct.image) {
+        console.log("No downloadURL provided by DB");
+      } else {
+        const fileGlob = getFileFromUrl(dbProduct.image);
+        setUploadedFile(fileGlob);
+      }
+
+      // (iii) CLEANUP FUNCTIONS
+    } catch (err) {
+      console.log(err?.response);
+      setError(true);
+    }
+  }
+
+  // [1] CHANGE STATE FOR TEXT FORM DATA
   const handleTextChange = (e) => {
     const { name, value } = e.target;
     setProductData({ ...productData, [name]: value });
   };
 
-  // [2] handleFileChange will handle change in state for FILE data
+  // [2] CHANGE STATE FOR FILE FORM DATA
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setProductData({ ...productData, image: file });
+    setPreview(false);
   };
 
-  // [3] handleSubmit will control form submission event
+  // [3] FORM SUBMISSION FUNCTION
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      // // API Post (refactored)
-      // const response = await cakeService.post(productData);
-      // console.log(response);
-      //navigate("/add");
-      window.location.reload();
+      // NOTE: We add uploadedFile parameter to pass image glob
+      const response = await cakeService.put(id, productData, uploadedFile);
+      console.log(response);
+      navigate(`/cakes/${id}`);
     } catch (err) {
       console.log(err?.response);
       window.scroll({ top: 0, left: 0, behavior: "smooth" });
@@ -55,8 +106,26 @@ function AddProduct() {
     }
   };
 
+  // CONDITIONAL LOAD: ERROR
+  if (error) {
+    return (
+      <Container className="text-center">
+        <p>Error page</p>
+      </Container>
+    );
+  }
+
+  // CONDITIONAL LOAD: LOADING
+  if (loading) {
+    return (
+      <Container>
+        <Loader />
+      </Container>
+    );
+  }
+
   return (
-    <FormContainer title="Add Product">
+    <FormContainer title="Edit Product">
       <Form onSubmit={handleSubmit}>
         {/* GROUP 1: NAME */}
         <Form.Group className="mb-4">
@@ -115,6 +184,14 @@ function AddProduct() {
           </InputGroup>
         </Form.Group>
 
+        {/* GROUP 6A: CONDITIONAL PREVIEW OF IMAGE (File in DB) */}
+        {preview && !loading ? (
+          <div>
+            <h6 className={styles.styledLabel}>Current Image</h6>
+            <img className={styles.img} src={image} alt="preview" />
+          </div>
+        ) : null}
+
         {/* GROUP 6: PRODUCT IMAGE */}
         <Form.Group className="mb-3" controlId="image">
           <Form.Label className={styles.styledLabel}>Image</Form.Label>
@@ -142,6 +219,6 @@ function AddProduct() {
       </Form>
     </FormContainer>
   );
-}
+};
 
-export default AddProduct;
+export default CakeEdit;

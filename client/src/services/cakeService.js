@@ -12,8 +12,14 @@ function post(data) {
   return api.post("/cakes/post", formData, formConfig);
 }
 // GET BY ID - ProductDetail
-
+function getById(id) {
+  return api.get("/cakes/" + id);
+}
 // PUT - EditProduct
+function put(id, data, uploadedfile) {
+  const formData = prepareFormData(data, uploadedfile);
+  return api.put("/cakes/" + id, formData, formConfig);
+}
 
 // DELETE - ProductDetail
 
@@ -47,6 +53,8 @@ function prepareFormData(data, uploadedfile) {
 const cakeService = {
   getAll,
   post,
+  getById,
+  put,
 };
 
 export default cakeService;
