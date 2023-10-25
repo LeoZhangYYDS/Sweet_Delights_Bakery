@@ -41,9 +41,9 @@ function AddProduct() {
     e.preventDefault();
     setLoading(true);
     try {
-      // // API Post (refactored)
-      // const response = await cakeService.post(productData);
-      // console.log(response);
+      // API Post (refactored)
+      const response = await cakeService.post(productData);
+      console.log(response);
       //navigate("/add");
       window.location.reload();
     } catch (err) {
@@ -89,7 +89,7 @@ function AddProduct() {
             value={category}
             onChange={handleTextChange}
           >
-            <option value=""> </option>
+            <option value="">Choose category</option>
             <option value="Wedding Cake">Wedding Cake</option>
             <option value="Cheese Cake">Cheese Cake</option>
             <option value="Fruit Cake">Fruit Cake</option>

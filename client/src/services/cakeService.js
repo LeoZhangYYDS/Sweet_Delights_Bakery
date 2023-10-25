@@ -22,6 +22,9 @@ function put(id, data, uploadedfile) {
 }
 
 // DELETE - ProductDetail
+function del(id) {
+  return api.delete("/cakes/" + id);
+}
 
 // REFACTORED VARIABLES/FUNCTIONS: Repeated code better abstracted to keep source code DRY (called above)
 // [1] Form Config: sets the content header to form data
@@ -55,6 +58,7 @@ const cakeService = {
   post,
   getById,
   put,
+  del,
 };
 
 export default cakeService;

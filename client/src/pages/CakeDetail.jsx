@@ -16,6 +16,7 @@ const CakeDetail = () => {
   // CUSTOM HOOKS
   const { user } = useAuth();
   const params = useParams();
+  const navigate = useNavigate();
 
   // STATE INIT
   const [productData, setProductData] = useState({
@@ -69,7 +70,23 @@ const CakeDetail = () => {
       setError(true);
     }
   }
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      // Call API - must match server route + pass id to route
+      const response = await cakeService.del(id);
+      console.log(response);
 
+      // onSuccess - Redirect
+      setLoading(false);
+      navigate("/cakes");
+    } catch (err) {
+      console.log(err?.response);
+      setError(true);
+      window.scroll({ top: 0, left: 0, behavior: "smooth" });
+    }
+  };
   // CONDITIONAL LOAD: ERROR
   if (error) {
     return (
@@ -80,7 +97,7 @@ const CakeDetail = () => {
   }
 
   // CONDITIONAL LOAD: LOADING
-  if (loading) {
+  if (loading && effectRan.current === false) {
     return (
       <Container className="text-center">
         <Loader />
@@ -91,6 +108,7 @@ const CakeDetail = () => {
   return (
     <div className={styles.box}>
       <div className={styles.left}>
+        <h2 className={styles.name1}>{capitalizeFirstLetter(name)}</h2>
         <img className={styles.img} src={image} alt={name} />
       </div>
       <div className={styles.mid}></div>
@@ -121,7 +139,7 @@ const CakeDetail = () => {
                 Edit
               </CusButton>
 
-              <CusButton>
+              <CusButton onClick={handleDelete}>
                 {loading ? (
                   <Spinner
                     as="span"

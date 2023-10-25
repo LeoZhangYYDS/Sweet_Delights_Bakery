@@ -1,7 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { vars } from "../../styles/themes.css";
 export const background = style({
-  marginTop: "2rem",
   width: "100%",
   background: "",
   display: "flex",

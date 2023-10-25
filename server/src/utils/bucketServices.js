@@ -3,6 +3,7 @@ const { bucket } = require("../config/db");
 const debugBucket = require("debug")("app:bucket");
 const uuid = require("uuid");
 const fs = require("fs");
+const config = require("../config/config");
 
 module.exports = {
   async storageBucketUpload(filename) {
@@ -92,5 +93,19 @@ module.exports = {
       // Return API response to controller
       return data[0];
     }
+  },
+  getFileFromUrl(downloadURL) {
+    // Slice off the base URL from downloadURL
+    const baseURL = `https://firebasestorage.googleapis.com/v0/b/${config.db.storageBucket}/o/`;
+    debugBucket(baseURL);
+    let fileGlob = downloadURL.replace(baseURL, "");
+
+    // Remove everything after the query string
+    const indexOfEndPath = fileGlob.indexOf("?");
+    fileGlob = fileGlob.substring(0, indexOfEndPath);
+
+    // Return existing uploaded file glob
+    debugBucket(`File in bucket queued for deletion: ${fileGlob}`);
+    return fileGlob;
   },
 };

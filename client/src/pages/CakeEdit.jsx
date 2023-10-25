@@ -116,7 +116,7 @@ const CakeEdit = () => {
   }
 
   // CONDITIONAL LOAD: LOADING
-  if (loading) {
+  if (loading && effectRan.current === false) {
     return (
       <Container>
         <Loader />
@@ -158,7 +158,7 @@ const CakeEdit = () => {
             value={category}
             onChange={handleTextChange}
           >
-            <option value=""> </option>
+            <option value="">Choose category</option>
             <option value="Wedding Cake">Wedding Cake</option>
             <option value="Cheese Cake">Cheese Cake</option>
             <option value="Fruit Cake">Fruit Cake</option>

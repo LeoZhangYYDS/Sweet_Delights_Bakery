@@ -4,6 +4,7 @@ const cakeController = require("../controllers/cakeController");
 const fileServerUpload = require("../middleware/fileServerUpload");
 const productPolicy = require("../policies/productPolicy");
 const filePolicy = require("../policies/filePolicy");
+const verifyAuth = require("../middleware/verifyAuth");
 //test
 router.get("/", (req, res) => {
   res.send("this is product route");
@@ -20,6 +21,7 @@ router.post(
     filePolicy.filesPayloadExists,
     filePolicy.fileSizeLimiter,
     filePolicy.fileExtLimiter([".png", ".jpg", ".jpeg", ".gif"]),
+    [verifyAuth.auth, verifyAuth.admin],
     fileServerUpload,
   ],
   cakeController.postProduct
@@ -36,10 +38,16 @@ router.put(
     filePolicy.filesPayloadExists,
     filePolicy.fileSizeLimiter,
     filePolicy.fileExtLimiter([".png", ".jpg", ".jpeg", ".gif"]),
+    [verifyAuth.auth, verifyAuth.admin],
     fileServerUpload,
   ],
   cakeController.updateProductById
 );
-//delete by id
+//delete by id     delete:  /api/cakes/:id
+router.delete(
+  "/:id",
+  [verifyAuth.auth, verifyAuth.admin],
+  cakeController.deleteProductById
+);
 
 module.exports = router;

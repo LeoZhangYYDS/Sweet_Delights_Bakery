@@ -3,6 +3,7 @@ const ApiError = require("../utils/ApiError");
 const {
   storageBucketUpload,
   deleteFileFromBucket,
+  getFileFromUrl,
 } = require("../utils/bucketServices");
 const debugREAD = require("debug")("app:read");
 const debugWRITE = require("debug")("app:write");
@@ -167,6 +168,45 @@ module.exports = {
           "Your request could not be processed at this time",
           err
         )
+      );
+    }
+  },
+  // 5 delete by id
+  async deleteProductById(req, res, next) {
+    // (a) Delete document image file from storage
+    try {
+      // (i) Store the document query in variable & call GET method for ID
+      const productRef = db.collection("cakes").doc(req.params.id);
+      const doc = await productRef.get();
+
+      // [400 ERROR] Check for User Asking for Non-Existent Documents
+      if (!doc.exists) {
+        return next(
+          ApiError.badRequest("The item you were looking for does not exist")
+        );
+      }
+
+      // (ii) Store downloadURL and obtain uploadedFile in storage bucket
+      const downloadURL = doc.data().image;
+      const uploadedFile = getFileFromUrl(downloadURL);
+
+      // (iii) Call storage bucket delete function & delete previously uploadedFile
+      const bucketResponse = await deleteFileFromBucket(uploadedFile);
+
+      // (b) Delete document from Cloud Firestore
+      if (bucketResponse) {
+        // Call DELETE method for ID (with PRECONDITION parameter to check document exists)
+        // NOTE: We defined Ref earlier!
+        const response = await productRef.delete({ exists: true });
+
+        // SUCCESS: Issue back response for timebeing
+        res.send(response);
+      }
+
+      // [500 ERROR] Checks for Errors in our Query - issue with route or DB query
+    } catch (err) {
+      return next(
+        ApiError.internal("Your request could not be saved at this time", err)
       );
     }
   },

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import * as styles from "./Cake.css";
 import cakeService from "../services/cakeService";
 import { AiOutlineLeft } from "react-icons/ai";
+import CusButton from "../components/button/CusButton";
 
 const Cakes = () => {
   // PRODUCTS STATE
@@ -66,7 +67,12 @@ const Cakes = () => {
         <h1 className={styles.title}>ALL</h1>
       </div>
       {/* category */}
-      <div className="category">category</div>
+      <div className={styles.category}>
+        <CusButton>All</CusButton>
+        <CusButton>Wedding Cakes</CusButton>
+        <CusButton>Cheese Cakes</CusButton>
+        <CusButton>Fruit Cakes</CusButton>
+      </div>
       {/* Products Menu */}
       {<ItemList products={data} />}
     </div>
