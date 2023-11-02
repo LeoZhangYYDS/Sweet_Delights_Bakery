@@ -1,7 +1,6 @@
 const { db } = require("../config/db");
 const config = require("../config/config");
 const deugAuth = require("debug")("app:authServices");
-
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const _ = require("lodash");
@@ -54,8 +53,10 @@ module.exports = {
 
     const token = jwt.sign(payload, secret, { expiresIn: tokenExpireTime });
     return token;
+
     //62 goback to authRoutes create login route
   },
+
   //65
   async comparePassword(user, password) {
     // (a) Retrieves hashed password in DB

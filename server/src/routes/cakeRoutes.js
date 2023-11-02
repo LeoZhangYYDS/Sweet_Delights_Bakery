@@ -5,10 +5,6 @@ const fileServerUpload = require("../middleware/fileServerUpload");
 const productPolicy = require("../policies/productPolicy");
 const filePolicy = require("../policies/filePolicy");
 const verifyAuth = require("../middleware/verifyAuth");
-//test
-router.get("/", (req, res) => {
-  res.send("this is product route");
-});
 
 //1 get all products,   get:  /api/cakes/all
 router.get("/all", cakeController.getAllProduct);

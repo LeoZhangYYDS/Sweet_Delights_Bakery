@@ -15,6 +15,7 @@ function post(data) {
 function getById(id) {
   return api.get("/cakes/" + id);
 }
+
 // PUT - EditProduct
 function put(id, data, uploadedfile) {
   const formData = prepareFormData(data, uploadedfile);
