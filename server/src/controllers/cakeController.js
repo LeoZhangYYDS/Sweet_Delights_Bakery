@@ -14,8 +14,8 @@ module.exports = {
     try {
       const productRef = db.collection("cakes");
       const snapshot = await productRef
-        .orderBy("name", "asc")
         // .where("category", "==", "Cheese Cake")
+        .orderBy("name", "asc")
         // .limit(4)
         .get();
       //400 error check if this collection exist

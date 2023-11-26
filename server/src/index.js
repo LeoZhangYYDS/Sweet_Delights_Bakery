@@ -13,7 +13,7 @@ const config = require("./config/config");
 
 const corsOptions = require("./config/corsOptions");
 //40 require dbPing
-const { dbPing } = require("./config/db");
+const { db } = require("./config/db");
 //12 require ApiError
 const ApiError = require("./utils/ApiError");
 //15 require apiErrorHandler
@@ -46,6 +46,9 @@ app.use(fileUpload({ createParentPath: true })); //和middleware里的 fileServe
 debugStartup("Parsing middleware enable on all routes");
 
 //4 routes
+app.get("/", (req, res) => {
+  res.send("Welcome to Sweet Delight API !");
+});
 app.use("/api/auth", authRoute); //44
 app.use("/api/cakes", cakeRoute);
 
@@ -65,11 +68,29 @@ app.use(apiErrorHandler);
 // );
 
 //41 把 21 换成下面的
-dbPing.then(() => {
+
+// Ping DB & Set Port
+if (config.env === "development") {
+  // Test DB Connection
+  db.listCollections()
+    .then((collections) => {
+      debugStartup("Connected to Cloud Firestore");
+      for (let collection of collections) {
+        debugStartup(`Found db collection: ${collection.id}`);
+      }
+    })
+    .then(() => {
+      app.listen(config.port, () =>
+        console.log(`Server is running on port: ${config.port}`)
+      );
+    });
+  // PRODUCTION
+} else {
   app.listen(config.port, () =>
-    console.log(`Server is running on port:${config.port}`)
+    console.log(`Server is running on port: ${config.port}`)
   );
-});
+}
+
 //42 successful connect to database,then go to routes foder create a auth route
 
 //24 create  db.js file in config 文件夹 链接database

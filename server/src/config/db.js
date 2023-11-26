@@ -8,29 +8,50 @@ var admin = require("firebase-admin");
 const config = require("./config");
 
 try {
-  //35改成下面的 var serviceAccount = require("c:/Users/user/Desktop/firesbase/sweet-delights-4d3ff-firebase-adminsdk-vpa9a-13868fe925.json");
-  var serviceAccount = require(config.db.serviceAccountKey);
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    //27 go to firebase website create storage bucket
-    //36 改成下面的 storageBucket: "sweet-delights-4d3ff.appspot.com",
-    storageBucket: config.db.storageBucket,
-  });
   dbStartup("Db connection success!");
-  //28
+  //setup of db credentials
+  let serviceAccountKey;
+  // STANDARD SETUP: ENV KEY
+  if (config.env === "development" || config.env === "production") {
+    serviceAccountKey = config.db.google_account_credentials;
+    // NEW SETUP: SEPARATE ENVs
+  } else if (config.env === "preview") {
+    serviceAccountKey = {
+      type: config.db.type,
+      project_id: config.db.project_id,
+      private_key_id: config.db.private_key_id,
+      private_key: config.db.private_key,
+      client_email: config.db.client_email,
+      client_id: config.db.client_id,
+      auth_uri: config.db.auth_uri,
+      token_uri: config.db.token_uri,
+      auth_provider_x509_cert_url: config.db.auth_provider_x509_cert_url,
+      client_x509_cert_url: config.db.client_x509_cert_url,
+      universe_domain: config.db.universe_domain,
+    };
+  }
+  dbStartup(serviceAccountKey);
+
+  // OPTIONS VAR: Grant admin access to firebase services + bucket services
+  const firebaseAppOptions = {
+    credential: admin.credential.cert(serviceAccountKey),
+    storageBucket: config.db.storageBucket,
+  };
+
+  //init firebase services & set core database APIS
+
+  admin.initializeApp(firebaseAppOptions);
   const db = admin.firestore();
   const bucket = admin.storage().bucket();
-  //29 export db methods
-  //30 go to .env
-  //37 test db connection (only work if you have 1 or more collection)
-  const dbPing = db.listCollections().then((collections) => {
-    dbStartup("Connected to Cloud Firestore");
-    for (let collection of collections) {
-      dbStartup(`Found db collection: ${collection.id}`);
-    }
-  });
+
+  // const dbPing = db.listCollections().then((collections) => {
+  //   dbStartup("Connected to Cloud Firestore");
+  //   for (let collection of collections) {
+  //     dbStartup(`Found db collection: ${collection.id}`);
+  //   }
+  // });
   //38 export
-  module.exports = { db, bucket, dbPing };
+  module.exports = { db, bucket };
   //39 go to index.js  ,先import dbPing 然后到port的地方call dbPing
 } catch (err) {
   debugError500(err);

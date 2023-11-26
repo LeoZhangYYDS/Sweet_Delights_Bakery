@@ -7,7 +7,8 @@
     "test": "node src/index",
     "server": "nodemon src/index",
     "devMac": "DEBUG=app* nodemon src/index",
-    "devWin": "set DEBUG=app:* & nodemon src/index"
+    "devWin": "set DEBUG=app:* & nodemon src/index",
+    "preview": "DEBUG=app* node src/index"
   },
   "author": "Leo",
   "license": "ISC",
