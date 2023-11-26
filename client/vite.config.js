@@ -2,22 +2,6 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 
-// https://vitejs.dev/config/
-//开发的时候这样写
-// export default defineConfig({
-//   plugins: [react(), vanillaExtractPlugin()],
-//   server: {
-//     port: 3000,
-//     proxy: {
-//       "/api": {
-//         target: "http://localhost:5000",
-//         changeOrigin: true,
-//         secure: false,
-//       },
-//     },
-//   },
-// });
-
 //deploy的时候 改成这样
 export default defineConfig(({ mode }) => {
   // eslint-disable-next-line no-undef
@@ -46,3 +30,19 @@ export default defineConfig(({ mode }) => {
     },
   };
 });
+
+// https://vitejs.dev/config/
+//开发的时候这样写
+// export default defineConfig({
+//   plugins: [react(), vanillaExtractPlugin()],
+//   server: {
+//     port: 3000,
+//     proxy: {
+//       "/api": {
+//         target: "http://localhost:5000",
+//         changeOrigin: true,
+//         secure: false,
+//       },
+//     },
+//   },
+// });
