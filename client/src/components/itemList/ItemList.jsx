@@ -1,6 +1,6 @@
 import React from "react";
 import * as styles from "./ItemList.css";
-import ItemCard from "../itemcard/itemCard";
+import ItemCard from "../itemcard/ItemCard";
 import { priceFormatter, capitalizeFirstLetter } from "../../utils/readUtils";
 
 const itemList = (props) => {
