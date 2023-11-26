@@ -14,6 +14,7 @@ export const root = createGlobalTheme(":root", {
     boxColor: "#ECA869",
     boxColor2: "#D3756B",
     text: "#1d2d44",
+    cart: "#E9CED2",
   },
 });
 

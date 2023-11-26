@@ -6,7 +6,8 @@ import { ToastContainer, Slide } from "react-toastify";
 import * as styles from "./Layout.css";
 import img from "/img/bg5.webp";
 
-const Layout = () => {
+const Layout = (props) => {
+  const { cartProducts, handleRemove } = props;
   return (
     <div className={styles.app}>
       <ToastContainer
@@ -24,7 +25,7 @@ const Layout = () => {
         theme="colored"
       />
       <img className={styles.img} src={img} alt="bg" />
-      <Header />
+      <Header cartProducts={cartProducts} handleRemove={handleRemove} />
       <div className={styles.appContent}>
         <Outlet />
       </div>

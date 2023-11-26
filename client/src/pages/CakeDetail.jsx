@@ -11,8 +11,10 @@ import useAuth from "../hooks/useAuth";
 import cakeService from "../services/cakeService";
 import Loader from "../components/loader/Loader";
 import CusButton from "../components/button/CusButton";
+import Counter from "../components/counter/Counter";
 
-const CakeDetail = () => {
+const CakeDetail = (props) => {
+  const { addNewProductToCart } = props;
   // CUSTOM HOOKS
   const { user } = useAuth();
   const params = useParams();
@@ -29,6 +31,7 @@ const CakeDetail = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [count, setCount] = useState(0);
 
   // Destructure data state nested object properties
   const { id, name, description, category, price, image } = productData;
@@ -87,6 +90,16 @@ const CakeDetail = () => {
       window.scroll({ top: 0, left: 0, behavior: "smooth" });
     }
   };
+  // *[NEW]* ADD PRODUCT TO CART
+  function handleAddToCart() {
+    if (count === 0) return;
+    addNewProductToCart({
+      ...productData,
+      quantity: count,
+      totalPrice: count * productData.price,
+    });
+    navigate("/cakes");
+  }
   // CONDITIONAL LOAD: ERROR
   if (error) {
     return (
@@ -125,7 +138,11 @@ const CakeDetail = () => {
           </p>
         </div>
         <div className={styles.rightBottom}>
-          <CusButton>Add to Cart</CusButton>
+          <div className={styles.box1}>
+            <Counter count={count} setCount={setCount} />
+            <CusButton onClick={handleAddToCart}>Add to Cart</CusButton>
+          </div>
+
           <p className={styles.text2}>
             Prices may vary in store. Pick up and delivery available in 7 days -
             Please order by 4pm to ensure availability. Choose a date & location

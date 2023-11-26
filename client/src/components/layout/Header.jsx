@@ -1,15 +1,23 @@
 import Nav from "react-bootstrap/Nav";
+import { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import * as styles from "./Header.css";
 import CusLink from "../link/CusLink";
+import CusButton from "../button/CusButton";
 import logo1 from "/img/logo.png";
 import { Link } from "react-router-dom";
 import logo2 from "/img/logo2.png";
 import { RiShoppingCartFill } from "react-icons/ri";
 import useAuth from "../../hooks/useAuth";
+import Cart from "../cart/Cart";
 
-function Header() {
+function Header(props) {
+  const { cartProducts, handleRemove } = props;
   const { user, logout } = useAuth();
+  // CART OFFCANVAS
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div className={styles.background}>
       <Navbar expand="xxl" className={styles.box}>
@@ -40,12 +48,18 @@ function Header() {
               </button>
             )}
 
-            <CusLink to="/cart">
+            <button className={styles.button} onClick={handleShow}>
               <RiShoppingCartFill className={styles.icon} />
-            </CusLink>
+            </button>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+      <Cart
+        show={show}
+        handleClose={handleClose}
+        cartProducts={cartProducts}
+        handleRemove={handleRemove}
+      />
     </div>
   );
 }

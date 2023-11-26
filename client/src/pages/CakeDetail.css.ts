@@ -54,8 +54,8 @@ export const img = style({
   "@media": {
     "screen and (max-width:950px)": {
       marginTop: "1rem",
-      width: "100%",
-      height: "45vh",
+      width: "55vw",
+      height: "65vh",
     },
   },
 });
@@ -103,6 +103,11 @@ export const text = style({
 export const rightBottom = style({
   fontFamily: vars.fonts.body,
 });
+export const box1 = style({
+  display: "flex",
+  justifyContent: "flex-start",
+});
+
 export const button = style({ width: "100%" });
 export const text2 = style({
   fontSize: "0.85rem",
